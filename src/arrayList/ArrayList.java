@@ -18,6 +18,7 @@ public class ArrayList implements MyList {
         array = new Object[size];
     }
 
+
     private Object[] grow() {
         int newCapacity = (array.length * 3 / 2);
         return array = Arrays.copyOf(array, newCapacity);
@@ -94,6 +95,7 @@ public class ArrayList implements MyList {
         return false;
     }
 
+
     @Override
     public int size() {
         return size;
@@ -128,7 +130,7 @@ public class ArrayList implements MyList {
 
     @Override
     public Iterator<Object> iterator() {
-        return new Iterator<Object>() {
+        return new Iterator<>() {
             private int nextIndex = 0;
 
             @Override
@@ -139,6 +141,11 @@ public class ArrayList implements MyList {
             @Override
             public Object next() {
                 return array[nextIndex++];
+            }
+
+            @Override
+            public void remove() {
+                shiftLeft(nextIndex - 1);
             }
         };
     }
